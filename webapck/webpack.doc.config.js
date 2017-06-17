@@ -20,7 +20,8 @@ module.exports = merge(basicConfig, {
   output: {
     path: resolve('docs'),
     filename: '[name].[chunkhash:8].js',
-    chunkFilename: 'js/[name].[chunkhash:8].js'
+    chunkFilename: 'js/[name].[chunkhash:8].js',
+    publicPath: './'
   },
   module: {
     rules: [
