@@ -67,7 +67,8 @@
     display: block;
     border: none;
     &:hover {
-      background: $darken( ,20%);
+      background: darken(#f44336, 5%);
+      border: none;
     }
   }
 }

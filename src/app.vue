@@ -1,6 +1,15 @@
 <template>
   <div id="app">
-    <router-view> </router-view>
+    <ln-nav
+      class="sidebar"
+      :default-active="1"
+      mode="vertical">
+      <ln-nav-item :route="{name: 'Affix'}" :index="1">Affix</ln-nav-item>
+      <ln-nav-item :route="{name: 'Nav'}" :index="2">Nav</ln-nav-item>
+    </ln-nav>
+    <main class="content">
+      <router-view> </router-view>
+    </main>
   </div>
 </template>
 
@@ -10,16 +19,21 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Microsoft Yahei;
   }
   #app {
-    // height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
-    // background: url('~assets/donut.jpg') no-repeat;
-    // background-size: cover;
-    // background-position: center;
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .sidebar {
+      width: 200px;
+      height:100vh;
+      overflow: auto;
+      float: left;
+    }
+    .content {
+      margin-left: 200px;
+    }
   }
 </style>
