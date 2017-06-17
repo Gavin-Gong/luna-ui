@@ -1,0 +1,10 @@
+/docs
+/doc
+/node_modules
+/src
+/webpack
+.babelrc
+.eslintignore
+.eslintrc
+index.html
+.npmignore
