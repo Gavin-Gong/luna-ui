@@ -4,6 +4,7 @@
     :class="{'is-active': isActive, 'is-disable': isDisable}"
     @click="handleClick">
     <slot></slot>
+    {{ routeActive() ? 'true' : 'false'}}
   </li>
 </template>
 
@@ -28,7 +29,7 @@
     mixins: [navMixin, emitter],
     computed: {
       isActive () {
-        return this.rootNav.activeIndex === this.index || this.routeActive()
+        return this.rootNav.activeIndex === this.index
       },
       isDisable () {
         return null
@@ -38,7 +39,7 @@
       handleClick () {
         // select actived item, pass index
         this.dispatch('ln-nav', 'item-click', this.index)
-        // this.$emit('item-click', this.index)
+        this.$emit('item-click', this.index)
         if (this.route) {
           try {
             // TODO: add opt to choose push/replace
@@ -65,6 +66,21 @@
             return false
           }
         }
+      }
+    },
+    mounted () {
+      if (this.routeActive()) {
+        console.log('dispatch')
+        /*
+          REVIEW: 不用 setTimeout/$nextTick 无法更新事件
+        */
+        // setTimeout(() => {
+        // }, 0)
+        this.$nextTick(() => {
+          this.dispatch('ln-nav', 'item-click', this.index)
+        })
+        console.log(this.rootNav.activeIndex)
+        console.log(this.index)
       }
     }
   }
