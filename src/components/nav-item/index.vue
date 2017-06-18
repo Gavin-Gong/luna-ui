@@ -4,7 +4,6 @@
     :class="{'is-active': isActive, 'is-disable': isDisable}"
     @click="handleClick">
     <slot></slot>
-    {{ routeActive() ? 'true' : 'false'}}
   </li>
 </template>
 
@@ -16,8 +15,7 @@
     name: 'ln-nav-item',
     componentName: 'ln-nav-item',
     props: {
-      // TODO: add support for http, https link
-      route: {
+      link: {
         type: [String, Object],
         default: null
       },
@@ -40,25 +38,30 @@
         // select actived item, pass index
         this.dispatch('ln-nav', 'item-click', this.index)
         this.$emit('item-click', this.index)
-        if (this.route) {
+        if (this.link) {
+          if (typeof this.link === 'string' && /https?:\/\//g.test(this.link)) {
+            // external link
+            window.open(this.link)
+            return
+          }
           try {
             // TODO: add opt to choose push/replace
-            this.$router.replace(this.route)
+            this.$router.replace(this.link)
           } catch (e) {
             console.log(e)
           }
         }
       },
       routeActive () {
-        if (this.$route && this.route) {
-          if (typeof this.route === 'string') {
-            return this.route.path === this.$route.path
-          } else if (typeof this.route === 'object' && this.route !== null) {
-            if (this.route.name !== undefined) {
-              return this.route.name === this.$route.name
+        if (this.$route && this.link) {
+          if (typeof this.link === 'string') {
+            return this.link.path === this.$route.path
+          } else if (typeof this.link === 'object' && this.link !== null) {
+            if (this.link.name !== undefined) {
+              return this.link.name === this.$route.name
             }
-            if (this.route.path !== undefined) {
-              return this.route.path === this.$route.path
+            if (this.link.path !== undefined) {
+              return this.link.path === this.$route.path
             }
             return false
           } else {
@@ -79,8 +82,6 @@
         this.$nextTick(() => {
           this.dispatch('ln-nav', 'item-click', this.index)
         })
-        console.log(this.rootNav.activeIndex)
-        console.log(this.index)
       }
     }
   }
