@@ -6,6 +6,7 @@
         v-for="item in navList"
         :index="item.id"
         :key="item.id">{{ item.title }}</ln-nav-item>
+        <ln-nav-item :index="6666" link="https://baidu.com">baidu</ln-nav-item>
     </ln-nav>
   </demo>
 </div>

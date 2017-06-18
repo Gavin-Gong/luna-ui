@@ -4,8 +4,8 @@
       class="sidebar"
       :default-active="1"
       mode="vertical">
-      <ln-nav-item :route="{name: 'Affix'}" :index="1">Affix</ln-nav-item>
-      <ln-nav-item :route="{name: 'Nav'}" :index="2">Nav</ln-nav-item>
+      <ln-nav-item :link="{name: 'Affix'}" :index="1">Affix</ln-nav-item>
+      <ln-nav-item :link="{name: 'Nav'}" :index="2">Nav</ln-nav-item>
     </ln-nav>
     <main class="content">
       <router-view> </router-view>
