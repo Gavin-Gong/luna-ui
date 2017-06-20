@@ -2,23 +2,24 @@
 
 
 ### Schedule
+- []
 - [] Basic Work Flow
 
 ### TODO Component
-- [ ] affix
-- [ ] color
+- [X] affix
+- [X] Nav
+- [ ] Loading
+- [ ] lazy image
+- [ ] Tab
 - [ ] slider
+- [ ] color
 - [ ] input
 - [ ] button
 - [ ] switch
 - [ ] rate
 - [ ] table
 - [ ] BackTop
-- [ ] Loading
 - [ ] layout
 - [ ] ToolTip
-- [ ] Tab
-- [ ] Loading
-- [ ] Nav
 
 
